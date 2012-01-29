@@ -15,7 +15,6 @@
   , "homepage": "http://github.com/vesln/storr"
   , "scripts": {
       "test": "make test"
-    , "postinstall": "make init"
   }
   , "main": "./lib/storr"
   , "engines": { 
