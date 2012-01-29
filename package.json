@@ -1,0 +1,24 @@
+{
+    "name": "storr"
+  , "version": "0.0.1"
+  , "description": "Minimalistic JSON storage."
+  , "keywords": ["json", "json storage"]
+  , "author": "Veselin Todorov <hi@vesln.com>"
+  , "devDependencies": {
+      "mocha": "0.3.3"
+    , "should": "0.3.2"
+  }
+  , "repository" : {
+      "type" : "git"
+    , "url" : "http://github.com/vesln/storr.git"
+  }
+  , "homepage": "http://github.com/vesln/storr"
+  , "scripts": {
+      "test": "make test"
+    , "postinstall": "make init"
+  }
+  , "main": "./lib/storr"
+  , "engines": { 
+      "node": ">= 0.6.0 < 0.7.0"
+  }
+}
