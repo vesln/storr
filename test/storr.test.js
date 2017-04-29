@@ -36,23 +36,23 @@ function rm() {
   }
 };
 
-describe('Storr', function() {
+describe('Storr', () => {
   beforeEach(rm);
   afterEach(rm);
   
-  describe('.set() \n    .get()', function() {
-   it('should access a key value', function(done) {
+  describe('.set() \n    .get()', () => {
+   it('should access a key value', done => {
      var storr = new Storr(file);
-     storr.set('foo', 'bar', function(err) {
-       storr.get('foo', function(err, val) {
+     storr.set('foo', 'bar', err => {
+       storr.get('foo', (err, val) => {
          val.should.eql('bar');
          done();
        });
      });
    });
    
-   describe('.use()', function() {
-     it('should change the source and the init state.', function() {
+   describe('.use()', () => {
+     it('should change the source and the init state.', () => {
        var storr = new Storr;
        storr.inited = true;
        storr.source = 'bar';
@@ -62,10 +62,10 @@ describe('Storr', function() {
      });
    });
    
-   it('should return all the stored data when no key is passed', function(done) {
+   it('should return all the stored data when no key is passed', done => {
      var storr = new Storr(file);
-      storr.set('foo', 'bar', function() {
-        storr.get(function(val) {
+      storr.set('foo', 'bar', () => {
+        storr.get(val => {
           val.should.eql({foo: 'bar'});
           done();
         })
@@ -73,12 +73,12 @@ describe('Storr', function() {
     });
   });
   
-  describe('.del()', function() {
-   it('should delete a key', function(done) {
+  describe('.del()', () => {
+   it('should delete a key', done => {
      var storr = new Storr(file);
-     storr.set('foo', 'bar', function() {
-       storr.del('foo', function() {
-         storr.get('foo', function(val) {
+     storr.set('foo', 'bar', () => {
+       storr.del('foo', () => {
+         storr.get('foo', val => {
             (val === null).should.be.true;
             done();
           });
@@ -87,11 +87,11 @@ describe('Storr', function() {
    }); 
   });
   
-  describe('.save()', function() {
-    it('should save content to file.', function(done) {
+  describe('.save()', () => {
+    it('should save content to file.', done => {
       var storr = new Storr(file);
-      storr.set('foo', ['bar', 'baz'], function() {
-        storr.save(function(err) {
+      storr.set('foo', ['bar', 'baz'], () => {
+        storr.save(err => {
           (err === null).should.be.true;
           fs.readFileSync(file, 'utf8').should.eql('{"foo":["bar","baz"]}');
           done();
@@ -100,12 +100,12 @@ describe('Storr', function() {
     }); 
   });
   
-  describe('.destroy()', function() {
-    it('should destroy the loaded file.', function(done) {
+  describe('.destroy()', () => {
+    it('should destroy the loaded file.', done => {
       var storr = new Storr(file);
-      storr.set('foo', 'bar', function() {
-        storr.save(function(err) {
-          storr.destroy(function(err) {
+      storr.set('foo', 'bar', () => {
+        storr.save(err => {
+          storr.destroy(err => {
             (err === null).should.be.true;
             path.existsSync(file).should.be.false;
             done();
